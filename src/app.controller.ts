@@ -1,13 +1,16 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { QueryAppDTO } from './app.dto';
+import { BodyAppDTO } from './app.dto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(@Query() queryData: QueryAppDTO): string {
-    return this.appService.getHello();
+  getСontacts(@Body() bodyData: BodyAppDTO) {
+    const name = bodyData.name;
+    const email = bodyData.email;
+    const phone = bodyData.phone;
+    return this.appService.getСontacts(name, email, phone);
   }
 }
